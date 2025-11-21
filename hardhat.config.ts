@@ -6,19 +6,19 @@ export default defineConfig({
   solidity: {
     profiles: {
       default: {
-        version: "0.8.24",
+        version: "0.8.24", // You can use the other version, but we recommend 0.8.24 because its default EVM version is shanghai.
         settings: {
-          evmVersion: "shanghai",
+          evmVersion: "shanghai", // Memecore evm version is shanghai.
         },
       },
       production: {
-        version: "0.8.24",
+        version: "0.8.24", // You can use the other version, but we recommend 0.8.24 because its default EVM version is shanghai.
         settings: {
           optimizer: {
             enabled: true,
             runs: 200,
           },
-          evmVersion: "shanghai",
+          evmVersion: "shanghai", // Memecore evm version is shanghai.
         },
       },
     },
