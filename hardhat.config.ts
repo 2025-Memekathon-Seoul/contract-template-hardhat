@@ -1,0 +1,51 @@
+import hardhatToolboxMochaEthersPlugin from "@nomicfoundation/hardhat-toolbox-mocha-ethers";
+import { configVariable, defineConfig } from "hardhat/config";
+
+export default defineConfig({
+  plugins: [hardhatToolboxMochaEthersPlugin],
+  solidity: {
+    profiles: {
+      default: {
+        version: "0.8.24",
+        settings: {
+          evmVersion: "shanghai",
+        },
+      },
+      production: {
+        version: "0.8.24",
+        settings: {
+          optimizer: {
+            enabled: true,
+            runs: 200,
+          },
+          evmVersion: "shanghai",
+        },
+      },
+    },
+  },
+  networks: {
+    hardhatMainnet: {
+      type: "edr-simulated",
+      chainType: "l1",
+    },
+    insectarium: {
+      type: "http",
+      chainType: "l1",
+      url: "https://rpc.insectarium.memecore.net",
+      accounts: [configVariable("DEPLOYER_PK")],
+      chainId: 43522,
+    },
+  },
+  chainDescriptors: {
+    43522: {
+      name: "insecatrium",
+      blockExplorers: {
+        blockscout: {
+          name: "Insectarium",
+          apiUrl: "https://insectarium.blockscout.memecore.com/api",
+          url: "https://insectarium.blockscout.memecore.com",
+        },
+      },
+    },
+  },
+});
